@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenCar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  background-color: skyblue;
+  margin: auto;
+}
+
+.navbar {
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+}
+h3::before {
+    content: '';
+    display: block;
+    height:      75px;
+    margin-top: -75px;
+    visibility: hidden;
+  }
+
+.menu-items a{
+    float: left;
+    margin: 0;
+    font-family: "montserrat",sans-serif;
+    text-transform: uppercase;
+    text-align: left;
+    min-width: 200px;
+    transition: color 0.4s linear;
+    position: relative;
+}
+.menu-items input[type=text]{
+    border: 2px solid #ccc;
+    margin-right: 20px;
+    height: 30px;
+}
+.menu-items a::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: skyblue;
+    z-index: -1;
+    transition: transform 0.5s;
+    transform-origin: 0 0;
+    transition-timing-function: cubic-bezier(0.5,1.6,0.4,0.7);
+}
+.menu-items a::before{
+    transform: scaleX(0);
+}
+.menu-items a:hover::before{
+    transform: scaleX(1);
+}
+
+.navbar .nav-container li {
+  list-style: none;
+}
+
+.navbar .nav-container a {
+  text-decoration: none;
+  color: #0e2431;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding: 0.7rem;
+}
+
+.navbar .nav-container a:hover{
+    font-weight: bolder;
+    color: white;
+}
+
+.nav-container {
+  display: block;
+  position: relative;
+  height: 60px;
+}
+
+.nav-container .checkbox {
+  position: absolute;
+  display: block;
+  height: 32px;
+  width: 32px;
+  top: 20px;
+  left: 20px;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.nav-container .hamburger-lines {
+  display: block;
+  height: 26px;
+  width: 32px;
+  position: absolute;
+  top: 17px;
+  left: 20px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-container .hamburger-lines .line {
+  display: block;
+  height: 4px;
+  width: 100%;
+  border-radius: 10px;
+  background: #0e2431;
+}
+
+.nav-container .hamburger-lines .line1 {
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line2 {
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line3 {
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.navbar .menu-items {
+  background-color: #4db9f7;
+  padding-top: 120px;
+  height: 100vh;
+  width: 200px;
+  transform: translate(-150%);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s ease-in-out;
+  text-align: center;
+}
+
+.navbar .menu-items li {
+  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.logo {
+    float: right;
+}
+.logo img{
+    display:inline-block;
+    width: 180px;
+}
+
+.nav-container input[type="checkbox"]:checked ~ .menu-items {
+  transform: translateX(0);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+  transform: rotate(45deg);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+  transform: scaleY(0);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+  transform: rotate(-45deg);
+}
+
+#banner {
+    height: 60vh;
+    background-image:url(https://lh3.googleusercontent.com/41Fv-iaDJAA-FJxW5WuSpY66R7G0NFF8moxkqWin-Nij_Q2MCddanTWDAPt0t3rbczeCxLmg5nhszbnIbzUIe-QwWvFd1VAmZs-cmqE0T7m7i-XVj1WWVBIAijAt-C8sAZqTgkyO=w2400);
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+text-transform: uppercase;
+}
+#banner:after {
+    content: '';
+    display: block; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(169, 226, 255, 0.6);
+}
+#banner h2 {
+    color: #fff;
+    z-index: 2;
+    padding: 20px 25px;
+}
+.main {
+  padding: 20px;
+  background-color: skyblue;
+}
+section {
+    font-size: x-large;
+    padding: 50px 0;
+}
+section h3 {
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 20px 0;
+    color:#fff
+}
+#about, #service, #gallery  {
+    padding-bottom: 100px;
+}
+#about p {
+    line-height: 25px;
+    word-spacing: 2px;
+    color: #666;
+    text-align:center;
+}
+#service {
+    background-color: aliceblue;
+    text-align: center;
+}
+#service h3 {
+  font-size: x-large;
+}
+.box {
+    color:#33DDFF;
+    width: 80%;
+    margin: 0 auto;
+}
+.box:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.box h3 {
+    padding-bottom: 50px;
+}
+.box .col-4 {
+    width: 25%;
+    padding: 20px;
+    box-sizing: border-box;
+    float: left;
+}
+.icon {
+    width: 70px;
+    border: 1px solid;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 70px;
+    font-size: 20px;
+    margin: 0 auto;
+}
+.box .col-4 h4 {
+    margin: 10px 0;
+    margin: 40px 0;
+    text-align: center;
+}
+#gallery, #contact, #signup{
+  margin-top: 100px;
+}
+#gallery {
+  font-size: x-large;
+  background-color: skyblue;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.pict {
+  text-align: center;
+}
+.pict img{
+  width: 40%;  
+  border: 2px solid white;
+  margin: 20px;
+}
+#gallery .pict .container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+#contact {
+  padding: 20px;
+  font-size: x-large;
+  text-align: center;
+  color: #33DDFF;
+  background-color: aliceblue;
+}
+.social {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.social a:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.social a {
+  text-align: center;
+  color: #33DDFF;
+  text-decoration: none;
+}
+#signup {
+  background-color: skyblue;
+  padding: 20px;
+  flex: 1;
+}
+#signup h3 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: x-large;
+  color: white;
+}
+#signup p {
+    color: #666;
+    padding-bottom: 10px;
+}
+#signup input {
+  border: none;
+  height: 30px;
+  width: 200px;
+}
+#signup select {
+  border: none;
+  height: 30px;
+  width: 200px;
+
+}
+#signup input [type=number] {
+  -moz-appearance: textfield;
+}
+#signup input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#signup table th, td {
+  padding: 20px;
+}
+#signup table {
+  text-align: center;
+  overflow-x: auto;
+}
+button {
+  border: 2px solid #ccc;
+    height: 30px;
+    width: 200px;
+}
+/*footer*/
+.footer {
+    padding: 30px 0;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+</style>
+</head>
+<body>
+    <nav>
+      <div class="navbar">
+        <div class="container nav-container">
+            <input class="checkbox" type="checkbox" name="" id="" />
+            <div class="hamburger-lines">
+              <span class="line line1"></span>
+              <span class="line line2"></span>
+              <span class="line line3"></span>
+            </div>  
+          <div class="logo">
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://lh3.googleusercontent.com/1blKpnu8hhtO6bAirYYxqOZHFlwm-6lsivjM4EYocLG8KAqkHSo4QfDIzAxB8PwBflN6pMLmvYgiU2efTGb_HWuGf1jWx7Ib7eQqfi1jFH6WemH2dMRyxgGdJny9GE7iM9kKc-xc=w2400" alt=""></a>
+          </div>
+          <div class="menu-items">
+            <li><a href="#banner">Home</a></li>
+            <li><a href="#about">about</a></li>
+            <li><a href="#service">service</a></li>
+            <li><a href="#gallery">gallery</a></li>
+            <li><a href="#contact">contact</a></li>
+            <li><a href="#signup">join us</a></li>
+            <li><input type="text" placeholder="Search your Car"></li>
+
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section id="banner";><h2>create an order, started to rent</h2></section>
+    <section id="about">
+        <div class="main">
+            <h3>ABOUT</h3>
+            <p>Rent-a-Car adalah media perantara kepercayaan nusa dan bangsa wakanda untuk memperoleh pinjaman mobil berkualias
+              dengan harga miring namun kualitas bersaing.<br>Berdiri sejak VoC sudah lelah duduk, media ini sudah mengepakkan sayap
+              usahanya demi memberi cakupan luas dan membantu orang yang membutuhkan pinjaman kendaraan
+            </p>
+        </div>
+      </section>
+      <div id="service">
+        <div class="box">
+            <h3>SERVICE</h3>
+            <div class="col-4">
+                <div class="icon"><a href=""><i class="fa-solid fa-car"></i></a></div>
+                <h4>RENTAL CAR</h4>
+            </div>
+            <div class="col-4">
+                <div class="icon"><a href=""><i class="fa-solid fa-plane"></i></a></div>
+                <h4>RENTAL PLANE</h4>
+            </div>
+            <div class="col-4">
+                <div class="icon"><a href=""><i class="fa-solid fa-motorcycle"></i></a></div>
+                <h4>RENTAL BIKE</h4>
+            </div>
+            <div class="col-4">
+                <div class="icon"><a href=""><i class="fa-solid fa-person-breastfeeding"></i></a></div>
+                <h4>RENTAL YOMAMA</h4>
+            </div>
+        </div>
+        </div>
+        <div id="gallery">
+          <h3>Gallery</h3>
+          <div class="pict">
+            <img src="https://lh3.googleusercontent.com/pw/AL9nZEVOxfO3Jb84KAEsfdIZBZJbiii3BWpbSV3DexqW7USIaUu2ml2w_nf6HH-LdggF3R-RIyliGihcQyaGpulmzLXe4egoJ5hXjSuP-1XihaIrymvnCQ=w2400" alt="">
+            <img src="https://lh3.googleusercontent.com/pw/AL9nZEXM_kPLfXuBninfpkA6IF2ASWt9ZPwGb_hldR80nniW1AO_s-SbPFSv0b0M7U4O1CNVvX0r5JMj1vhv8XBzIQOlUpGp0o0tdgk85YOSIjllErfuAA=w2400" alt="">
+            <img src="https://lh3.googleusercontent.com/pw/AL9nZEXRZbezNpQbAv2LwXpfnt7aDZc7P0g6WsYh3mGfRzqRSD4wI2U4cJ7m9ogPmMpckIUt1yyk-zdJblEVR9miWI9o_gTkfbunLt2a53hXn81GaeozdA=w2400" alt="">
+          </div>
+          <div class="container"><iframe src="https://www.youtube.com/embed/xVg_U38ju2M?start=3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+        </div>
+        <div id="contact">
+          <h3>contact</h3>
+          <div class="social">
+          <div class="social"><a href="https://www.facebook.com" target="none"><i class="fa-brands fa-facebook"></i>facebook</a></div>
+          <div class="social"><a href="https://www.whatsapp.com" target="none"><i class="fa-brands fa-whatsapp"></i>Whatsapp</a></div>
+          <div class="social"><a href="https://www.twitter.com"  target="none"><i class="fa-brands fa-twitter"></i>twitter</a></div>
+        </div></div>
+        <div id="signup">
+          <h3>join us</h3>
+          <div class="tab">
+            <form action="">
+              <table>
+              <tr>
+                <td><p>enter your name</p><input type="text"placeholder="your name"></td>
+              </tr>
+              <tr>
+                <td><p>your status</p><select name="status" id="status">
+                  <option value="">College</option>
+                  <option value="">uneducated</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td><p>enter your email</p><input type="text" placeholder="example@bruh.com"></td>
+              </tr>
+              <tr>
+                <td><p>phone number</p><input type="number"placeholder="081xxxxx"></td>
+              </tr>
+              <tr>
+                <td colspan="2"><button>submit</button></td>
+              </tr>
+          </table></form></div>
+        </div>
+</body>
+ <!--Footer-->
+ <div class="footer">
+  <small>Copyright &copy; 2022 - Muhammad Amir. All Right Reserved</small>
+</div>
+</html>
